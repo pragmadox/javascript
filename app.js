@@ -37,6 +37,50 @@ if( i===0 || i===1 ) {
 
 if(true) console.log('I am done in one line')
 
+//JS Functions
+//parameter vs argument
+//function declaration
+function myName(name){
+    console.log(name)
+}
+myName('Jay')
 
+var ageFun = function(age){
+    console.log(age)
+}
+ageFunc(99)
+
+function(){}
+//anonymous functions
+
+//IIFE immediately invoked function expression
+(
+    function hi(){
+        console.log('hello, this function has run.')
+    }
+())
+
+//JS Scope
+//Global Scope
+var globalA = 'A'
+//Local Scope
+function localFunc(){
+    var localA = 'a'
+    console.log(localA)
+}
+localFunc()
+
+console.log(globalA)
+
+var a = "A"
+function b(){
+    var d = "D"
+}
+function c(){
+    b()
+}
+
+c()
+console.log(a)
 
 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ES6 Date Class</title>
+</head>
+    
+<body>
+    
+    <div id="js-output"></div>
+    <form>
+    <input id="userInput" type="text"></input>
+    <button type="submit">Submit</button>
+    </form>
+
+    
+</body>
+    
+<script>
+    
+    // Date Class in depth
+    var userDate;
+    
+    document.querySelector('form').addEventListener('submit', function(){
+        event.preventDefault()
+        userDate = new Date(document.getElementById('userInput').value)
+        checkDate()
+    })
+
+    function checkDate(){
+        var rightNow = new Date();
+        var rightNow_ms = rightNow.getTime(); // 1504030634096 ms
+        var diff_ms = rightNow_ms - userDate; // time diff in ms
+        var diff_sec = Math.round(diff_ms/1000); // convert ms to sec
+        var diff_min = Math.floor(diff_sec/60); // convert sec to min
+        var diff_hr = Math.floor(diff_min/60); // convert min to hr
+        var diff_day = Math.floor(diff_hr/24); // convert hr to days
+        //var fuzzy_time = diff_day + " days " + diff_hr%24 + " hours ago";
+        // ES6 String Interpolation: no more plus-sign concatenation
+        var fuzzy_time = "";
+        // big if-else if-else if block to express fuzzy time
+        if(diff_day>0){
+        fuzzy_time += `${diff_day} days, `;
+        }
+        if(diff_hr%24 && diff_day>=1){
+            fuzzy_time += `${diff_hr%24} hours, `;
+        }
+        if(diff_min%60>0 && diff_day<7){
+            fuzzy_time += `${diff_min%60} minutes, `;
+        }
+        if(diff_sec%60>0 && diff_min<60){
+            fuzzy_time += `${diff_sec%60} seconds, `;
+        }
+        if(diff_ms%1000>0 && diff_sec<60){
+            fuzzy_time += `${diff_ms%1000} milliseconds `;
+        }
+        fuzzy_time += "ago."
+        console.log(fuzzy_time);
+    }
+    
+</script>
+
+</html>
